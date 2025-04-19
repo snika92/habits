@@ -16,6 +16,7 @@ class Place(models.Model):
     owner = models.ForeignKey(
         User,
         verbose_name="Владелец места",
+        related_name="places",
         help_text="Укажите владельца места",
         null=True,
         blank=True,
@@ -39,6 +40,7 @@ class Habit(models.Model):
     owner = models.ForeignKey(
         User,
         verbose_name="Владелец привычки",
+        related_name="habits",
         help_text="Укажите владельца привычки",
         null=True,
         blank=True,
@@ -48,6 +50,7 @@ class Habit(models.Model):
     place = models.ForeignKey(
         Place,
         verbose_name="Место выполнения привычки",
+        related_name="habits",
         help_text="Укажите место выполнения привычки",
         null=True,
         blank=True,
@@ -74,6 +77,7 @@ class Habit(models.Model):
     related_habit = models.ForeignKey(
         "self",
         verbose_name="Связанная привычка",
+        related_name="habits",
         help_text="Укажите связанную привычку",
         null=True,
         blank=True,
