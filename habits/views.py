@@ -27,6 +27,7 @@ class HabitListApiView(ListAPIView):
     ordering_fields = ("action",)
     search_fields = ("action",)
 
+
 # Список публичных привычек
 
 
