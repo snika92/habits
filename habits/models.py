@@ -1,5 +1,6 @@
 from django.db import models
 
+from config import settings
 from users.models import User
 
 
@@ -14,13 +15,13 @@ class Place(models.Model):
         upload_to="images/", null=True, blank=True, verbose_name="Превью"
     )
     owner = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         verbose_name="Владелец места",
         related_name="places",
         help_text="Укажите владельца места",
         null=True,
         blank=True,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):
@@ -38,13 +39,13 @@ class Habit(models.Model):
     description = models.TextField(null=True, blank=True, verbose_name="Описание")
 
     owner = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         verbose_name="Владелец привычки",
         related_name="habits",
         help_text="Укажите владельца привычки",
         null=True,
         blank=True,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
     )
 
     place = models.ForeignKey(
