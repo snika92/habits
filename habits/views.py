@@ -1,3 +1,4 @@
+from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.generics import (CreateAPIView, DestroyAPIView,
                                      ListAPIView, RetrieveAPIView,
                                      UpdateAPIView)
@@ -20,6 +21,13 @@ class HabitCreateApiView(CreateAPIView):
 class HabitListApiView(ListAPIView):
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
+
+    filterset_fields = ("place", "is_pleasant_habit", "period", "is_public")
+    filter_backends = [OrderingFilter, SearchFilter]
+    ordering_fields = ("action",)
+    search_fields = ("action",)
+
+# Список публичных привычек
 
 
 class HabitRetrieveApiView(RetrieveAPIView):
