@@ -27,6 +27,7 @@ class UserCreateAPIView(CreateAPIView):
 
 class UserRetrieveApiView(RetrieveAPIView):
     queryset = User.objects.all()
+    permission_classes = [IsModerator | IsUser]
 
     def get_serializer_class(self):
         if self.get_object() == self.request.user:
