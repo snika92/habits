@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 from config import settings
@@ -35,7 +36,7 @@ class Place(models.Model):
 
 class Habit(models.Model):
 
-    action = models.CharField(max_length=200, verbose_name="Действие")
+    action = models.CharField(max_length=200, verbose_name="Название привычки")
     description = models.TextField(null=True, blank=True, verbose_name="Описание")
 
     owner = models.ForeignKey(
@@ -58,11 +59,11 @@ class Habit(models.Model):
         on_delete=models.SET_NULL,
     )
 
-    execution_time = models.DateTimeField(
+    last_execution_time = models.DateField(
         null=True,
         blank=True,
-        verbose_name="Время, когда необходимо выполнять привычку",
-        help_text="Укажите время, когда необходимо выполнять привычку",
+        verbose_name="Время последнего выполнения привычки",
+        help_text="Укажите время последнего выполнения привычки",
     )
 
     # У приятной привычки не может быть вознаграждения или связанной привычки.
@@ -86,9 +87,9 @@ class Habit(models.Model):
     )
 
     # Нельзя выполнять привычку реже, чем 1 раз в 7 дней.
-    period = models.CharField(
-        max_length=25,
-        default="Ежедневная",
+    period = models.PositiveIntegerField(
+        validators=[MaxValueValidator(7), MinValueValidator(1)],
+        default=1,
         verbose_name="Периодичность привычки",
         help_text="Укажите периодичность привычки",
     )
@@ -103,7 +104,8 @@ class Habit(models.Model):
     )
 
     # Время выполнения должно быть не больше 120 секунд
-    duration_time = models.DateTimeField(
+    duration_time = models.PositiveIntegerField(
+        validators=[MaxValueValidator(120)],
         null=True,
         blank=True,
         verbose_name="Время на выполнение привычки",
