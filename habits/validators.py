@@ -1,7 +1,5 @@
 from rest_framework import serializers
 
-from habits.models import Habit
-
 
 def related_habit_or_reward_validator(value):
     """Валидатор для проверки, что нельзя указывать одновременно связанную привычку и вознаграждение."""
