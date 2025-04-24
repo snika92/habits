@@ -16,6 +16,7 @@ class HabitAdmin(admin.ModelAdmin):
         "action",
         "owner",
         "place",
+        "planned_time",
         "last_execution_time",
         "is_pleasant_habit",
         "period",
