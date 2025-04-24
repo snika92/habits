@@ -2,7 +2,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 from config import settings
-from users.models import User
 
 
 class Place(models.Model):
@@ -58,7 +57,12 @@ class Habit(models.Model):
         blank=True,
         on_delete=models.SET_NULL,
     )
-
+    planned_time = models.TimeField(
+        verbose_name="Время",
+        help_text="Укажите, в какое время планируете выполнять привычку",
+        null=True,
+        blank=True,
+    )
     last_execution_time = models.DateField(
         null=True,
         blank=True,
