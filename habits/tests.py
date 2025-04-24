@@ -178,7 +178,8 @@ class RewardAndAssociatedValidatorTest(TestCase):
             related_habit_is_pleasant_habit_validator(data)
 
     def test_is_pleasant_habit_validator(self):
-        """Тестирование проверки валидатора, который проверяет, что у приятной привычки нет ни вознаграждения, ни связвнной привычки"""
+        """Тестирование проверки валидатора, который проверяет, что у приятной привычки нет ни вознаграждения,
+        ни связанной привычки"""
         data = {"is_pleasant_habit": True, "reward": "Reward", "related_habit": 1}
         with self.assertRaisesMessage(
             Exception,

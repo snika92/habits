@@ -1,12 +1,7 @@
-from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
-from rest_framework.test import APIClient, APITestCase
+from rest_framework.test import APITestCase
 
-from habits.models import Habit
-from habits.serializers import HabitSerializer
-from habits.validators import (related_habit_is_pleasant_habit_validator,
-                               related_habit_or_reward_validator)
 from users.models import User
 
 
