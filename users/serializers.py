@@ -15,7 +15,7 @@ class UserSerializer(ModelSerializer):
             "password",
             "email",
             "phone_number",
-            "tg_nick",
+            "tg_chat_id",
             "avatar",
             "city",
             "habits",
