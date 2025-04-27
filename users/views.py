@@ -5,12 +5,12 @@ from rest_framework.permissions import AllowAny
 
 from .models import User
 from .permissions import IsModerator, IsUser
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserDetailSerializer
 
 
 class UserListApiView(ListAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserDetailSerializer
     permission_classes = [IsModerator]
 
 
@@ -31,7 +31,7 @@ class UserRetrieveApiView(RetrieveAPIView):
 
     def get_serializer_class(self):
         if self.get_object() == self.request.user:
-            return UserSerializer
+            return UserDetailSerializer
 
 
 class UserUpdateApiView(UpdateAPIView):

@@ -108,7 +108,7 @@ class Habit(models.Model):
     )
 
     # Время выполнения должно быть не больше 120 секунд
-    duration_time = models.PositiveIntegerField(
+    duration_time = models.TimeField(
         validators=[MaxValueValidator(120)],
         null=True,
         blank=True,
