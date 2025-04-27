@@ -11,8 +11,22 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = [
-            "username",
             "password",
+            "email",
+            "phone_number",
+            "tg_chat_id",
+            "avatar",
+            "city",
+            "habits",
+        ]
+
+
+class UserDetailSerializer(ModelSerializer):
+    habits = HabitSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        fields = [
             "email",
             "phone_number",
             "tg_chat_id",
