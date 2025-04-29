@@ -45,6 +45,7 @@ jobs:
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
 
     - name: Cache Poetry dependencies
       uses: actions/cache@v3
@@ -56,15 +57,13 @@ jobs:
 
     - name: Install dependencies
       run: |
-        poetry install --no-root
-        poetry add django flake8
-
+        poetry install
 
     - name: Set environment variables
       run: echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
 
     - name: Run tests
-      run: python manage.py test
+      run: poetry run python manage.py test
 
     - name: Install dependencies on server
       run: |
