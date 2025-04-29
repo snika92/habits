@@ -102,6 +102,9 @@ jobs:
       - name: Deploy to Server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+            # Останавливаем мешающие процессы
+            sudo pkill -f ":80" || true
+          
             # Останавливаем и удаляем контейнер, если он существует
             sudo docker stop myapp || true
             sudo docker rm myapp || true
