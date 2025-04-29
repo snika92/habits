@@ -102,9 +102,14 @@ jobs:
       - name: Deploy to Server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-            sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
+            # Останавливаем и удаляем контейнер, если он существует
             sudo docker stop myapp || true
             sudo docker rm myapp || true
+
+            # Освобождаем порт 80, если он занят
+            sudo lsof -ti :80 | xargs -r sudo kill -9
+
+            # Запускаем новый контейнер
+            sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
             sudo docker run -d --name myapp -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
           EOF
-
