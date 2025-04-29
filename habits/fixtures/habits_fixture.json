@@ -1,0 +1,224 @@
+[
+{
+    "model": "habits.place",
+    "pk": 1,
+    "fields": {
+        "title": "Дом Марии",
+        "description": "",
+        "image": "",
+        "owner": 3
+    }
+},
+{
+    "model": "habits.place",
+    "pk": 2,
+    "fields": {
+        "title": "Работа Марии",
+        "description": "",
+        "image": "",
+        "owner": 3
+    }
+},
+{
+    "model": "habits.place",
+    "pk": 3,
+    "fields": {
+        "title": "Парк Марии",
+        "description": "",
+        "image": "",
+        "owner": 3
+    }
+},
+{
+    "model": "habits.place",
+    "pk": 4,
+    "fields": {
+        "title": "Дом Ники",
+        "description": "",
+        "image": "",
+        "owner": 4
+    }
+},
+{
+    "model": "habits.place",
+    "pk": 5,
+    "fields": {
+        "title": "Работа Ники",
+        "description": "",
+        "image": "",
+        "owner": 4
+    }
+},
+{
+    "model": "habits.place",
+    "pk": 6,
+    "fields": {
+        "title": "Парк Ники",
+        "description": "",
+        "image": "",
+        "owner": 4
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 1,
+    "fields": {
+        "action": "Полежать в ванной",
+        "description": "",
+        "owner": 3,
+        "place": 1,
+        "planned_time": null,
+        "last_execution_time": null,
+        "is_pleasant_habit": true,
+        "related_habit": null,
+        "period": 3,
+        "reward": null,
+        "duration_time": "00:02",
+        "is_public": true
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 2,
+    "fields": {
+        "action": "Пробежка",
+        "description": "",
+        "owner": 3,
+        "place": 3,
+        "planned_time": null,
+        "last_execution_time": null,
+        "is_pleasant_habit": false,
+        "related_habit": 1,
+        "period": 3,
+        "reward": null,
+        "duration_time": "00:02",
+        "is_public": true
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 3,
+    "fields": {
+        "action": "Выпить воду",
+        "description": "",
+        "owner": 3,
+        "place": 1,
+        "planned_time": null,
+        "last_execution_time": null,
+        "is_pleasant_habit": false,
+        "related_habit": null,
+        "period": 1,
+        "reward": "Съесть апельсин",
+        "duration_time": null,
+        "is_public": false
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 4,
+    "fields": {
+        "action": "Зарядка",
+        "description": "",
+        "owner": 4,
+        "place": 4,
+        "planned_time": null,
+        "last_execution_time": null,
+        "is_pleasant_habit": false,
+        "related_habit": 5,
+        "period": 1,
+        "reward": null,
+        "duration_time": "00:02",
+        "is_public": false
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 5,
+    "fields": {
+        "action": "Почитать книгу",
+        "description": "",
+        "owner": 4,
+        "place": 4,
+        "planned_time": null,
+        "last_execution_time": null,
+        "is_pleasant_habit": true,
+        "related_habit": null,
+        "period": 1,
+        "reward": null,
+        "duration_time": "00:02",
+        "is_public": false
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 6,
+    "fields": {
+        "action": "Не опаздывать",
+        "description": "",
+        "owner": 4,
+        "place": 5,
+        "planned_time": null,
+        "last_execution_time": null,
+        "is_pleasant_habit": false,
+        "related_habit": null,
+        "period": 1,
+        "reward": "Купить вкусняшку",
+        "duration_time": "00:02",
+        "is_public": true
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 7,
+    "fields": {
+        "action": "Habit 3",
+        "description": null,
+        "owner": null,
+        "place": null,
+        "planned_time": null,
+        "last_execution_time": "2025-04-22",
+        "is_pleasant_habit": false,
+        "related_habit": null,
+        "period": 1,
+        "reward": null,
+        "duration_time": null,
+        "is_public": false
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 8,
+    "fields": {
+        "action": "Habit 3",
+        "description": null,
+        "owner": 5,
+        "place": null,
+        "planned_time": null,
+        "last_execution_time": "2025-04-23",
+        "is_pleasant_habit": false,
+        "related_habit": null,
+        "period": 1,
+        "reward": null,
+        "duration_time": null,
+        "is_public": false
+    }
+},
+{
+    "model": "habits.habit",
+    "pk": 9,
+    "fields": {
+        "action": "Новая привычка",
+        "description": "",
+        "owner": 4,
+        "place": 4,
+        "planned_time": "14:03:02",
+        "last_execution_time": "2025-04-23",
+        "is_pleasant_habit": false,
+        "related_habit": 1,
+        "period": 1,
+        "reward": null,
+        "duration_time": "00:01",
+        "is_public": false
+    }
+}
+]
