@@ -26,6 +26,8 @@ redis = "^5.2.1"
 django-celery-beat = "^2.8.0"
 eventlet = "^0.39.1"
 requests = "^2.32.3"
+gunicorn = "^23.0.0"
+django-redis = "^5.4.0"
 
 
 [build-system]

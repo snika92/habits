@@ -1,0 +1,96 @@
+services:
+  db:
+    networks:
+      - app_network
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $POSTGRES_USER" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  web:
+    networks:
+      - app_network
+    build: .
+    container_name: web
+    command: sh -c "python manage.py collectstatic --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - .:/app
+      - media:/app/media
+      - static_volume:/app/staticfiles
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - db
+    env_file:
+      - ./.env
+    healthcheck:
+      disable: true
+
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis_data:/data
+    env_file:
+      - ./.env
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli ping | grep PONG" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  celery:
+    build:
+      context: .
+    command: celery -A config worker -l INFO
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+
+  celery_beat:
+    networks:
+      - app_network
+    build:
+      context: .
+    command: celery -A config beat -l INFO -S django
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+      - celery
+
+  nginx:
+    networks:
+      - app_network
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - static_volume:/app/staticfiles
+    depends_on:
+      - web
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  media:
+  static_volume:
+  redis_data:
