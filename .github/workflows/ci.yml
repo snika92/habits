@@ -103,11 +103,8 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
           
-            # Останавливаем и удаляем контейнер, если он существует
-            sudo docker stop myapp || true
-            sudo docker rm myapp || true
-
-            # Запускаем новый контейнер
-            sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
-            sudo docker run -d --name myapp -p 8080:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/myapp:${{ github.sha }}
+            cd habits/habits
+            git pull
+            docker-compose down 
+            docker-compose up -d --build
           EOF
