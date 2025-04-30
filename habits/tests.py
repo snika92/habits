@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+from django.contrib.auth import get_user_model
 
 from habits.models import Habit, Place
 from habits.serializers import HabitSerializer
@@ -144,10 +145,11 @@ class HabitTestCase(APITestCase):
 
 
 class RewardAndAssociatedValidatorTest(TestCase):
-
     def setUp(self):
+        User = get_user_model()
         self.user = User.objects.create_user(
-            email="test@mail.ru", password="test", username="test"
+            email="test@mail.ru",
+            password="test"
         )
         self.place = Place.objects.create(title="Дом", owner=self.user)
 
